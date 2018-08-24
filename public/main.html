@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark|Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="shortcut icon" href="assets/img/if-1.png">
+    <link rel="stylesheet" href="assets/css/fontello.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+
+<body>
+    <!-- encabezado -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="assets/img/logo.png">
+        </a>
+        <a href="#" data-target="#sidebar" data-toggle="collapse">
+            <i class="fas fa-align-justify fa-2x py-2 p-1"></i>
+        </a>
+    </nav>
+    <!-- fin encabezado,inicio de menu lateral  -->
+    <div class="container-fluid">
+        <div class="row d-flex d-md-block flex-nowrap wrapper">
+            <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+                <div class="list-group border-0 card text-center text-md-left">
+                    <a id="header" class="list-group-item d-inline-block collapsed">
+                        <img id="thumb" src="assets/img/Administrador.png">
+                        <span id="name" class="d-none d-md-inline"> Administrador</span>
+                    </a>
+                    <a href="#" onclick="inicio()" class="list-group-item d-inline-block collapsed">
+                        <i class="fas fa-home"></i>
+                        <span class="d-none d-md-inline"> Inicio</span>
+                    </a>
+                    <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-book"></i>
+                        <span class="d-none d-md-inline"> Registro
+                        <i class="fas fa-caret-down"></i>
+                        </span>
+                    </a>
+                    <div class="collapse" id="menu1" data-parent="#sidebar">
+                        <!-- <a href="#" class="list-group-item"> Registro de Recepcionista </a> -->
+                        <a href="#" onclick="registroVisitantes()" class="list-group-item"> Registro de Visitantes </a>
+                        <!-- <a href="#" class="list-group-item"> Registro de Funcionarios</a>
+                        <a href="#" class="list-group-item"> Registro de Delivery</a> -->
+                    </div>
+                    <a href="#menu3" onclick="mostrarDivIngresoSalida()" class="list-group-item d-inline-block collapsed">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="d-none d-md-inline"> Ingreso / Salida </span>
+                    </a>
+                    <a href="#" onclick="mostrarTabla()" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+                        <i class="far fa-chart-bar"></i>
+                        <span class="d-none d-md-inline">Planilla Registros</span>
+                    </a>
+                    <a href="index.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+                        <i class="fas fa-power-off"></i>
+                        <span class="d-none d-md-inline"> Cerrar Sesion</span>
+                    </a>
+                </div>
+            </div>
+            <main class="col-md-9 float-left col px-5 pl-md-2 pt-2 main">
+
+                <!-- pantalla bienvenida  -->
+                <div id ="inicioContainer"class='container-fluid' style="display:none">
+                         <div class="row justify-content-between">
+                            <i id="volver" onclick="volverAHome()" class="far fa-arrow-alt-circle-left fa-2x"></i>
+                             <h2>Bienvenidos</h2>
+                         </div>
+                        <div class="row">
+                                <div id="bloque1" onclick="" class='col-12'  style="display:none">Registro Funcionarios</div>
+                                <div id="bloque2" onclick="registroVisitantes()" class='col-12'>Registro Visitas</div>
+                                <div id="bloque3" onclick="" class='col-12' style="display:none">Registro Delivery </div>      
+                        </div>
+                        <div class="row">
+                            <div class=" col-xs-6 ">
+                                <div class="wrap">
+                                        <div class="widget">
+                                            <div class="fecha">
+                                                <p id="diaSemana" class="diaSemana">Martes</p>
+                                                <p id="dia" class="dia">27</p>
+                                                <p>de </p>
+                                                <p id="mes" class="mes">Octubre</p>
+                                                <p>del </p>
+                                                <p id="year" class="year">2015</p>
+                                            </div>
+                                    
+                                            <div class="reloj">
+                                                <p id="horas" class="horas">11</p>
+                                                <p>:</p>
+                                                <p id="minutos" class="minutos">48</p>
+                                                <p>:</p>
+                                                <div class="caja-segundos">
+                                                    <p id="ampm" class="ampm">AM</p>
+                                                    <p id="segundos" class="segundos">12</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+                <!-- pantalla bienvenida fin  -->
+                <!-- registro funcionarios inicio-->
+                <!-- <form id="registerFuncionariosForm" class="form" style="display:none">
+                        <div class="row justify-content-between">
+                            <div class="columna col-4">
+                                <i id="volver" onclick="volverAHome()" class="far fa-arrow-alt-circle-left fa-2x"></i>
+        
+                                <h2>REGISTRO FUNCIONARIOS</h2>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="email">Nombre:</label>
+                                        <div class="relative">
+                                            <input class="form-control" id="firstName1" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Nombre sólo puede contener letras" autocomplete="" placeholder="Escribe tu nombre aqui...">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Apellido:</label>
+                                        <div class="relative">
+                                            <input class="form-control" id="lastName1" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Apellido sólo puede contener letras" autocomplete="" placeholder="Escribe tu apellido aqui...">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <div class="relative">
+                                            <input class="form-control" id="dni" type="email1" required="" placeholder="Escribe tu dirección de email ..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Empresa:</label>
+                                        <div class="relative">
+                                            <div class="dropdown">
+                                                <button class="form-control " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Empresa<i class="fa fa-building"></i>
+                                              </button>
+                                                <ul class="dropdown-menu" onclick="lang1(event)" aria-labelledby="dropdownMenuButton">
+                                                    <li><a class="dropdown-item" href="#">Elestudio</a></li>
+                                                    <li><a class="dropdown-item" href="#">Robotics Labs</a></li>
+                                                    <li><a class="dropdown-item" href="#">Fábrica de medios</a></li>
+                                                    <li><a class="dropdown-item" href="#">Laboratoria</a></li>
+                                                    <li><a class="dropdown-item" href="#">Fundación Mustakis</a></li>
+                                                    <li><a class="dropdown-item" href="#">Destileria Husares</a></li>
+                                                    <li><a class="dropdown-item" href="#">Aguaslab</a></li>
+                                                    <li><a class="dropdown-item" href="#">Wildproyectchile</a></li>
+                                                    <li><a class="dropdown-item" href="#">Deseis</a></li>
+                                                    <li><a class="dropdown-item" href="#">cdi</a></li>
+                                                    <li><a class="dropdown-item" href="#">Tremenda</a></li>
+                                                    <li><a class="dropdown-item" href="#">Ilegal</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="email">Cargo:</label>
+                                            <div class="relative">
+                                                <input class="form-control" id="cargo" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Apellido sólo puede contener letras" autocomplete="" placeholder="Escribe tu apellido aqui...">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col">
+    
+                                    <div>
+    
+                                        <video class="" id="video"></video>
+                                        <canvas id="canvas"></canvas>
+                                        <div class="output">
+                                            <img id="photo" alt="">
+                                        </div>
+                                    </div>
+    
+                                    <button class="btn btn-outline-dark" id="startbutton">Tomar Foto</button>
+    
+                                </div>
+                                <!-- <div class="row"> -->
+                            <!-- </div>
+                            <div class="tright">
+                                <a href="">
+                                    <button class="movebtn movebtnre" type="Reset">
+                                                <i class="fas fa-eraser"></i>Limpiar</button>
+                                </a>
+                                <a href="">
+                                    <button class="movebtn movebtnsu" type="Submit" id="btnGuardar1" onclick="guardarDatos()">Enviar
+                                                    <i class="fa fa-fw fa-paper-plane"></i>
+                                                </button>
+                                </a>
+                            </div>
+                        </div>
+    
+                    </form> --> 
+                <!-- registro funcionarios fin  -->
+                <!-- registro visitantes................. -->
+                <form id="registerVisitantesForm" class="form" style="display:none">
+                    <div class="row justify-content-between">
+                        <div class="columna col-4">
+                            <i id="volver" onclick="volverAHome()" class="far fa-arrow-alt-circle-left fa-2x"></i>
+    
+                            <h2>REGISTRO VISITANTES</h2>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email">Nombre:</label>
+                                    <div class="relative">
+                                        <input class="form-control" id="firstName" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Nombre sólo puede contener letras" autocomplete="" placeholder="Escribe tu nombre aqui...">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Apellido:</label>
+                                    <div class="relative">
+                                        <input class="form-control" id="lastName" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Apellido sólo puede contener letras" autocomplete="" placeholder="Escribe tu apellido aqui...">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <div class="relative">
+                                        <input class="form-control" id="correo" type="email" required="" placeholder="Escribe tu dirección de email ..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Empresa:</label>
+                                    <div class="relative">
+                                        <div class="dropdown">
+                                            <button class="form-control " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Empresa<i class="fa fa-building"></i>
+                                          </button>
+                                            <ul class="dropdown-menu" onclick="lang1(event)" aria-labelledby="dropdownMenuButton">
+                                                <li><a class="dropdown-item" href="#">Elestudio</a></li>
+                                                <li><a class="dropdown-item" href="#">Robotics Labs</a></li>
+                                                <li><a class="dropdown-item" href="#">Fábrica de medios</a></li>
+                                                <li><a class="dropdown-item" href="#">Laboratoria</a></li>
+                                                <li><a class="dropdown-item" href="#">Fundación Mustakis</a></li>
+                                                <li><a class="dropdown-item" href="#">Destileria Husares</a></li>
+                                                <li><a class="dropdown-item" href="#">Aguaslab</a></li>
+                                                <li><a class="dropdown-item" href="#">Wildproyectchile</a></li>
+                                                <li><a class="dropdown-item" href="#">Deseis</a></li>
+                                                <li><a class="dropdown-item" href="#">cdi</a></li>
+                                                <li><a class="dropdown-item" href="#">Tremenda</a></li>
+                                                <li><a class="dropdown-item" href="#">Ilegal</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+
+                                <div>
+
+                                    <video class="" id="video"></video>
+                                    <canvas id="canvas"></canvas>
+                                    <div class="output">
+                                        <img id="photo" alt="">
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-dark" id="startbutton">Tomar Foto</button>
+
+                            </div>
+                            <!-- <div class="row"> -->
+                        </div>
+                        <div class="tright">
+                            <a href="">
+                                <button class="movebtn movebtnre" onclick="clear()">
+                                            <i class="fas fa-eraser"></i>Limpiar</button>
+                            </a>
+                            <a href="">
+                                <button class="movebtn movebtnsu"  id="btnGuardar" onclick="guardarDatos()">Enviar
+                                    <i class="fa fa-fw fa-paper-plane"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- end registro visitantes ................. -->
+                  <!-- start show table -->
+                <div id="tablaPersonas" class="row" style="display:none">
+                        <div class="row justify-content-between">
+                                <div class="columna col-4">
+                                    <i id="volver" onclick="volverAHomeplanilla()" class="far fa-arrow-alt-circle-left fa-2x"></i>
+                                </div>
+                            </div>
+                    <button type="button" class="btn btn-secondary" onclick="leerDatos()">Mostrar planilla</button>
+                    <div class="col-12" id="tablaVisitantes" style="display:none;">
+                        <table class="table-responsive  table-striped">
+                            <thead  id="encabezadoTabla"class="thead-dark">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Empresa</th>
+                                    <th scope="col">Fecha registro</th>
+                                    <th scope="col">
+                                        <i class="fas fa-edit"></i>Editar
+                                    </th>
+                                    <th scope="col">
+                                        <i class="fas fa-trash-alt"></i>Eliminar
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end show table -->
+                 <!-- inicio ingreso/salida tabla  -->
+                 <div id="divIngresoSalida" class="row" style="display: none">
+                        <div class="row justify-content-between">
+                                <div class="columna col-4">
+                                    <i onclick="volverAHomeDivIngresoSalida()" class="far fa-arrow-alt-circle-left fa-2x"></i>
+                                </div>
+                            </div>
+                    <button type="button" class="btn btn-secondary" onclick="leerIngresoSalida()">Mostrar Datos</button>
+                    <div class="col-12" id="tablaIngresoSalida" style="display:none;">
+                        <table class="table-responsive  table-striped">
+                            <thead  id="encabezadoTabla"class="thead-dark">
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Empresa</th>
+                                    <th scope="col">Fecha de Ingreso</th>
+                                    <th scope="col">Fecha de Salida</th>
+                                    <th scope="col">Marca Salida</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpotablaIngresoSalida"></tbody>
+                        </table>
+                    </div>
+                </div>
+                 <!-- fin inicio ingreso/salida tabla  -->
+            </main>
+        </div>
+    </div>
+    <!-- scripts................... -->
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/video.js"></script>
+</body>
+
+</html>
