@@ -10,7 +10,8 @@ Y de esta forma desplazar el actual sistema.
 ## Enlaces importantes
 
 ### Preview
-![Login final Proyect](https://user-images.githubusercontent.com/42657393/47358675-c7343900-d6a0-11e8-93ea-4c481e82cacf.png)
+![Login Final Proyect](https://user-images.githubusercontent.com/42657393/47358675-c7343900-d6a0-11e8-93ea-4c481e82cacf.png)
+![Main Final Proyect](https://user-images.githubusercontent.com/42657393/47358763-1f6b3b00-d6a1-11e8-999a-c10e2394d01c.png)
 
 ### Planificación 
 
